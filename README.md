@@ -61,3 +61,7 @@ monitor_port = /dev/ttyACM1
 ; board = esp32-c6-devkitc-1
 ; board_build.cmake_extra_args = 
 ;     -DSDKCONFIG_DEFAULTS="sdkconfig.defaults.esp32c6"
+
+
+ota
+https://www.youtube.com/watch?v=QhnLKu6tmLg
