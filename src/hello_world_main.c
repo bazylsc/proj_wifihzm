@@ -17,6 +17,7 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "teleplot_udp.h"
+#include "mqtt_task.h"
 #define WIFI_SSID      "gear22"        // Zmień na nazwę swojej sieci WiFi
 #define WIFI_PASS      "czterymisie"       // Zmień na hasło swojej sieci WiFi
 #define WIFI_MAXIMUM_RETRY  5
@@ -136,6 +137,9 @@ void app_main(void)
 
     // Uruchom wątek Teleplot UDP po połączeniu WiFi
     start_teleplot_udp_task();
+    
+    // Inicjalizacja zadania MQTT
+    mqtt_task_init();
 
     /* Print chip information */
     esp_chip_info_t chip_info;

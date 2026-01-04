@@ -8,7 +8,6 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/home/bazyl/Documents/PlatformIO/Projects/260104-183127-espidf-hello-world/include",
                 "/home/bazyl/Documents/PlatformIO/Projects/260104-183127-espidf-hello-world/src",
                 "/home/bazyl/.platformio/packages/framework-espidf/components/xtensa/esp32s3/include",
                 "/home/bazyl/.platformio/packages/framework-espidf/components/xtensa/include",
@@ -183,12 +182,12 @@
                 "/home/bazyl/.platformio/packages/framework-espidf/components/touch_element/include",
                 "/home/bazyl/.platformio/packages/framework-espidf/components/usb/include",
                 "/home/bazyl/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
+                "/home/bazyl/Documents/PlatformIO/Projects/260104-183127-espidf-hello-world/include",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/home/bazyl/Documents/PlatformIO/Projects/260104-183127-espidf-hello-world/include",
                     "/home/bazyl/Documents/PlatformIO/Projects/260104-183127-espidf-hello-world/src",
                     "/home/bazyl/.platformio/packages/framework-espidf/components/xtensa/esp32s3/include",
                     "/home/bazyl/.platformio/packages/framework-espidf/components/xtensa/include",
@@ -363,6 +362,7 @@
                     "/home/bazyl/.platformio/packages/framework-espidf/components/touch_element/include",
                     "/home/bazyl/.platformio/packages/framework-espidf/components/usb/include",
                     "/home/bazyl/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
+                    "/home/bazyl/Documents/PlatformIO/Projects/260104-183127-espidf-hello-world/include",
                     ""
                 ]
             },

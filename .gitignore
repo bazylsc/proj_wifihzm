@@ -1,1 +1,11 @@
 .pio
+/build/
+/dist/
+*.o
+*.a
+*.so
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+

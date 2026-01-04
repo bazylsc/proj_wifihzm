@@ -45,7 +45,8 @@ static void send_teleplot_data(udp_context_t *ctx, const char *name, float value
     char buffer[UDP_BUFFER_SIZE];
     
     // Format danych dla teleplot: ">nazwa:wartość\n"
-    int len = snprintf(buffer, sizeof(buffer), ">%s:%.3f\n", name, value);
+//    int len = snprintf(buffer, sizeof(buffer), ">%s:%.3f|g", name, value);
+    int len = snprintf(buffer, sizeof(buffer), "%s:%.3f|g", name, value);
     
     if (len > 0 && len < sizeof(buffer)) {
         int err = sendto(ctx->socket_fd, buffer, len, 0, 
@@ -83,8 +84,7 @@ void teleplot_udp_task(void *pvParameters) {
         float temperature_sim = 25.0 + sin(time_counter * 0.05) * 10.0;
         
         // Wysyłanie danych do teleplot
-        send_teleplot_daUDP
-ta(&udp_ctx, "sinus", sine_wave);
+        send_teleplot_data(&udp_ctx, "sinus", sine_wave);
         send_teleplot_data(&udp_ctx, "cosinus", cosine_wave);
         send_teleplot_data(&udp_ctx, "random", random_data);
         send_teleplot_data(&udp_ctx, "temp", temperature_sim);
