@@ -10,7 +10,7 @@
 #include "esp_timer.h"
 
 // Konfiguracja dla Teleplot
-#define TELEPLOT_IP     "192.168.5.45"  // Zmień na IP komputera z teleplot
+#define TELEPLOT_IP     "192.168.2.162"  // Zmień na IP komputera z teleplot
 #define TELEPLOT_PORT   47269             // Domyślny port teleplot
 #define UDP_BUFFER_SIZE 256
 

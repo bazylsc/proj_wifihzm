@@ -17,7 +17,7 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "teleplot_udp.h"
-#define WIFI_SSID      "gear22"        // Zmień na nazwę swojej sieci WiFi
+#define WIFI_SSID      "gear2"        // Zmień na nazwę swojej sieci WiFi
 #define WIFI_PASS      "czterymisie"       // Zmień na hasło swojej sieci WiFi
 #define WIFI_MAXIMUM_RETRY  5
 
