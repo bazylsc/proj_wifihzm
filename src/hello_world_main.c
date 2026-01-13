@@ -17,6 +17,7 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "teleplot_udp.h"
+#include "ssd1306_display.h"
 #define WIFI_SSID      "gear2"        // Zmień na nazwę swojej sieci WiFi
 #define WIFI_PASS      "czterymisie"       // Zmień na hasło swojej sieci WiFi
 #define WIFI_MAXIMUM_RETRY  5
@@ -136,6 +137,9 @@ void app_main(void)
 
     // Uruchom wątek Teleplot UDP po połączeniu WiFi
     start_teleplot_udp_task();
+    
+    // Start LCD display task
+    start_lcd_display_task();
     
 
     /* Print chip information */
