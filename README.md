@@ -65,3 +65,7 @@ monitor_port = /dev/ttyACM1
 
 ota
 https://www.youtube.com/watch?v=QhnLKu6tmLg
+
+
+plytka debugujaca do esp32
+https://www.seeedstudio.com/Seeed-Studio-XIAO-Debug-Mate-p-6588.html
