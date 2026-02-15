@@ -16,11 +16,14 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
+#include "driver/gpio.h"
 #include "teleplot_udp.h"
 #include "ssd1306_display.h"
-#define WIFI_SSID      "gear2"        // Zmień na nazwę swojej sieci WiFi
-#define WIFI_PASS      "czterymisie"       // Zmień na hasło swojej sieci WiFi
+#include "host_ip.h"
+
 #define WIFI_MAXIMUM_RETRY  5
+// gpio15 led on xiao board
+#define LED_PIN            15
 
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT      BIT1
@@ -120,6 +123,42 @@ void additional_task(void *parameter) {
     }
 }
 
+// Funkcja konfiguracji LED
+void configure_led(void) {
+    gpio_config_t io_conf = {
+        .intr_type = GPIO_INTR_DISABLE,
+        .mode = GPIO_MODE_OUTPUT,
+        .pin_bit_mask = (1ULL<<LED_PIN),
+        .pull_down_en = 0,
+        .pull_up_en = 0,
+    };
+    gpio_config(&io_conf);
+}
+
+// Task migającej LED
+void led_blink_task(void *parameter) {
+    static const char *LED_TAG = "LED_BLINK";
+    configure_led();
+    
+    ESP_LOGI(LED_TAG, "LED blink task started on GPIO %d", LED_PIN);
+    
+    while(1) {
+        // Włącz LED
+        gpio_set_level(LED_PIN, 1);
+        ESP_LOGI(LED_TAG, "LED ON");
+        
+        // Poczekaj 1000ms
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        
+        // Wyłącz LED
+        gpio_set_level(LED_PIN, 0);
+        ESP_LOGI(LED_TAG, "LED OFF");
+        
+        // Poczekaj 1000ms
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
+
 void app_main(void)
 {
     printf("Hello world!\n");
@@ -141,6 +180,9 @@ void app_main(void)
     // Start LCD display task
     start_lcd_display_task();
     
+    // Start TCP client task
+    //start_tcp_client_task();
+    
 
     /* Print chip information */
     esp_chip_info_t chip_info;
@@ -157,7 +199,18 @@ void app_main(void)
         NULL                    // Handle do wątku (opcjonalne)
     );
 
+    // Tworzenie wątku migającej LED
+    xTaskCreate(
+        led_blink_task,         // Funkcja wątku
+        "LED_Blink_Task",       // Nazwa wątku
+        2048,                   // Rozmiar stosu w słowach
+        NULL,                   // Parametr przekazywany do wątku
+        5,                      // Priorytet (0-25, wyższe = ważniejsze)
+        NULL                    // Handle do wątku (opcjonalne)
+    );
+
     printf("Dodatkowy wątek został utworzony!\n");
+    printf("LED blink task został utworzony!\n");
 
     printf("This is %s chip with %d CPU core(s), WiFi%s%s, ",
            CONFIG_IDF_TARGET,
